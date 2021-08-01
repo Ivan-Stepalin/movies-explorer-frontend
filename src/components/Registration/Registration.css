@@ -1,0 +1,9 @@
+.auth__submit_register {
+    margin: 20px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+    .auth__submit_register {
+        margin: 20px 0 0;
+    }
+}

@@ -1,0 +1,113 @@
+.technologies__container {
+    box-sizing: border-box;
+    margin: 0 auto 0;
+    padding: 90px 70px 100px;
+    max-width: 1200px;
+    background-color: #F5F5F5;
+}
+
+.technologies__title {
+    margin: 0 auto 23px;
+    font-size: 22px;
+    line-height: 27px;
+    vertical-align: Top;
+    letter-spacing: -4%;
+}
+
+.technologies__underline {
+    margin: 0 0 90px;
+    padding: 0;
+}
+
+.technologies__box {
+    margin: 0 auto 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.technologies__subtitle {
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+}
+
+.technologies__description {
+    margin: 26px auto 0;
+    padding: 0;
+    max-width: 460px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.technologies__list {
+    margin: 100px auto 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(7, max-content);
+    grid-gap: 10px;
+}
+
+.technologies__item {
+    min-width: 90px;
+    min-height: 60px;
+    background-color: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 1023px) {
+    .technologies__subtitle {
+        margin: 0 0 22px;
+    }
+
+    .technologies__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .technologies__item {
+        min-width: 84px;
+        min-height: 57px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .technologies__container {
+        padding: 90px 50px 70px;
+    }
+
+    .technologies__underline {
+        margin: 0 0 80px;
+        padding: 0;
+    }
+
+    .technologies__subtitle {
+        font-size: 30px;
+        line-height: 36px;
+        margin: 0 0 24px;
+    }
+
+    .technologies__description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .technologies__list {
+        margin: 83px auto 0;
+        grid-template-columns: repeat(2, max-content);
+    }
+}
