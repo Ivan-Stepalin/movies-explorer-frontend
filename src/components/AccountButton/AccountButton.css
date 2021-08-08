@@ -1,11 +1,12 @@
 .account__link_sidebar {
     align-self: center;
     margin-top: auto;
+    text-decoration: none;
 }
 
 .account__button {
     min-width: 100px;
-    background-color: rgb(249, 249, 249);
+    background-color: #e8e8e8;
     border-radius: 20px;
     padding: 8px 20px;
     font-style: normal;
@@ -18,8 +19,25 @@
     color: rgba(0, 0, 0, 0.8);
 }
 
+.account__image {
+    margin: 0 0 0 25px;
+    padding: 7px;
+    background-color: #e8e8e8;
+    width: 12px;
+    border-radius: 4px;
+}
+
 @media screen and (max-width: 1023px) {
     .account__link_header {
         display: none;
     }
+
+    .account__button {
+        background-color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
+
+

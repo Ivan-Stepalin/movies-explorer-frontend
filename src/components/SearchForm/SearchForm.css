@@ -25,6 +25,7 @@
     border: 1.5px solid rgba(170, 170, 170, 0.2);
     border-radius: 40px;
     transition: all 0.25s ease-in-out;
+    background-color: #fff;
 }
 
 .search__fieldset:hover,

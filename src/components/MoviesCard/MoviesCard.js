@@ -16,7 +16,7 @@ export const MoviesCard = (props) => {
 
     return (
         <article className='movie-card'>
-            <img src={poster} alt='Дюна' className='movie-card__poster'/>
+            <img src={poster} alt='33 слова о дизайне' className='movie-card__poster'/>
             <div className='movie-card__block'>
                 <h2 className='movie-card__title'>
                     33 слова о дизайне

@@ -35,22 +35,22 @@
 }
 
 @media screen and (max-width: 1023px) {
-    .nav-tab__list {
+    .navigation-tab__list {
         grid-gap: 10px;
     }
 
-    .nav-tab__link {
+    .navigation-tab__link {
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .nav-tab__list {
+    .navigation-tab__list {
         grid-gap: 6px;
         margin: 0 0 14px;
     }
 
-    .nav-tab__link {
+    .navigation-tab__link {
         min-width: 82px;
         min-height: 26px;
         font-size: 10px;
