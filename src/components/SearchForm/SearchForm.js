@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import find from '../../images/movie/find.svg'
 import './SearchForm.css';
 
 export const SearchForm = () => {
@@ -20,14 +19,14 @@ export const SearchForm = () => {
                 <fieldset className='search__fieldset'>
                     <input type='text' className='search__input' name='search' placeholder='Фильм' required value={state.search} onChange={handleChange}/>
                     <button className='button search__submit' onClick={handleSubmit}>
-                        <img src={find} alt={'find'}/>
+                        Найти
                     </button>
                 </fieldset>
                 <div className='button search__switch'>
                     <span className='search__switch-checkbox'>
                       <input type='checkbox' id='switch' className='search__switch-input' name='checkbox' checked={state.checkbox} onChange={handleChange} />
                       <span className='search__switch-checkbox-replica' onClick={handleChangeReplicaCheckbox}>
-                        <span className='search__switch-checkbox-knob'></span>
+                        <span className='search__switch-checkbox-knob'/>
                       </span>
                     </span>
                     <label htmlFor='switch' className='search__switch-text'>Короткометражки</label>

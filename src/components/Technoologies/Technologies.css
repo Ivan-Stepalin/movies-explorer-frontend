@@ -3,7 +3,7 @@
     margin: 0 auto 0;
     padding: 90px 70px 100px;
     max-width: 1200px;
-    background-color: #F5F5F5;
+    background-color: #272727;
 }
 
 .technologies__title {
@@ -56,7 +56,7 @@
 .technologies__item {
     min-width: 90px;
     min-height: 60px;
-    background-color: #e8e8e8;
+    background-color: #303030;
     display: flex;
     justify-content: center;
     align-items: center;

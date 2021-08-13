@@ -1,6 +1,7 @@
 .page {
   font-family: 'Inter', sans-serif;
-  background-color: #F5F5F5;
+  background-color: #202020;
+  color: white;
 }
 
 .title {
@@ -38,10 +39,26 @@
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active
-{
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  caret-color: white;
+  border: none;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 1000px #202020 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
+
+/*input:-webkit-autofill,*/
+/*input:-webkit-autofill:hover,*/
+/*input:-webkit-autofill:focus,*/
+/*input:-webkit-autofill:active*/
+/*{*/
+/*  -webkit-box-shadow: 0 0 0 30px #202020 inset !important;*/
+/*}*/
 
 @media screen and (max-width: 767px) {
   .title {

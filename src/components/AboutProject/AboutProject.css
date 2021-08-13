@@ -72,13 +72,13 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    color: #a0a0a0;
+    color: #8B8B8B;
 }
 
 .project__progress-frontend {
     position: relative;
     grid-column: 2/6;
-    background-color: #f2f2f2;
+    background-color: #303030;
 }
 
 .project__progress-frontend::before {
@@ -87,7 +87,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -106,7 +105,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    color: #a0a0a0;
+    color: #8B8B8B;
 }
 
 @media screen and (max-width: 1023px) {

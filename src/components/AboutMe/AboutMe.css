@@ -36,7 +36,7 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 20px;
-    color: #111;
+    color: white;
     margin: 0 0 26px;
 }
 
@@ -54,11 +54,11 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    color: #000;
+    color: white;
 }
 
 .aboutMe__link:hover {
-    color: rgba(0, 0, 0, 0.7);
+    opacity: .5;
 }
 
 .aboutMe__social-links {

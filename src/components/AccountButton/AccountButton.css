@@ -6,23 +6,26 @@
 
 .account__button {
     min-width: 100px;
-    background-color: #e8e8e8;
-    border-radius: 20px;
-    padding: 8px 20px;
+    background-color: #202020;
+    padding: 0;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .account__button:hover {
-    color: rgba(0, 0, 0, 0.8);
+    opacity: .5;
 }
 
 .account__image {
     margin: 0 0 0 25px;
     padding: 7px;
-    background-color: #e8e8e8;
+    background-color: #313131;
     width: 12px;
     border-radius: 4px;
 }

@@ -21,11 +21,12 @@
 
 .navigation__link {
     font-style: normal;
-    color: rgba(0, 0, 0, 1);
+    color: white;
+
 }
 
 .navigation__link:hover {
-    /*color: rgba(0, 0, 0, 0.7);*/
+    opacity: .7;
 }
 
 .navigation__link_header {
@@ -46,11 +47,11 @@
 }
 
 .navigation__link_sidebar_active {
-    border-bottom: 2px solid rgba(0, 0, 0, 1);
+    border-bottom: 2px solid rgba(255, 255, 255, 1);
 }
 
 .navigation__link_sidebar_active:hover {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 @media screen and (max-width: 1023px) {

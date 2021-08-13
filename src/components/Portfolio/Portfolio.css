@@ -9,7 +9,7 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 20px;
-    color: #a0a0a0;
+    color: #8B8B8B;
     margin: 0 0 30px;
 }
 
@@ -29,11 +29,12 @@
     font-weight: normal;
     font-size: 30px;
     line-height: 50px;
-    color: rgba(0, 0, 0, 1);
+    /*color: rgba(0, 0, 0, 0.8);*/
+    color: white;
 }
 
 .portfolio__link:hover {
-    color: rgba(0, 0, 0, 0.7);
+    opacity: .5;
 }
 
 .portfolio__link::after {

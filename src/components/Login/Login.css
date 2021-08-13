@@ -36,12 +36,12 @@
 .auth__label {
     font-size: 10px;
     line-height: 12px;
-    color: #a0a0a0;
+    color: #8B8B8B;
     margin: 0;
 }
 
 .auth__input {
-    background-color: #fff;
+    background-color: #202020;
     height: 32px;
     font-weight: 500;
     font-size: 14px;
@@ -49,18 +49,17 @@
     margin: 0 0 24px;
     box-sizing: border-box;
     border: none;
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid #424242;
     outline: none;
     transition: all 0.25s ease-in-out;
+    color: white;
 }
 
-.auth__input:hover,
-.auth__input:focus {
-    /* box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06); */
+.auth__input:hover {
+    background-color: #202020;
 }
-
 .auth__input:focus {
-    border-bottom: 1px solid #3456F3;
+    background-color: #202020;
 }
 
 .auth__input_error {
@@ -122,7 +121,7 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    color: #a0a0a0;
+    color: #8B8B8B;
     margin: 16px 0;
 }
 
