@@ -1,0 +1,141 @@
+.aboutMe {
+    max-width: 1140px;
+    margin: auto;
+    padding: 100px 50px 0;
+}
+
+.aboutMe__title {
+    margin: 0 0 66px;
+}
+
+.aboutMe__content {
+    display: grid;
+    grid-template-columns: auto max-content;
+    grid-gap: 0 50px;
+}
+
+.aboutMe__avatar {
+    grid-column: 2;
+    grid-row: 1/3;
+    width: 270px;
+    border-radius: 10px;
+}
+
+.aboutMe__name {
+    max-width: 600px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+    margin: 0 0 18px;
+}
+
+.aboutMe__profession {
+    max-width: 600px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: white;
+    margin: 0 0 26px;
+}
+
+.aboutMe__description {
+    max-width: 600px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0;
+}
+
+.aboutMe__link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: white;
+}
+
+.aboutMe__link:hover {
+    opacity: .5;
+}
+
+.aboutMe__social-links {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.aboutMe__social-links_footer {
+    grid-template-columns: repeat(3, max-content);
+}
+
+.aboutMe__social-links_student {
+    grid-template-columns: repeat(2, max-content);
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 1023px) {
+    .aboutMe {
+        padding: 90px 50px 0;
+    }
+
+    .aboutMe__name {
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0 0 16px;
+    }
+
+    .aboutMe__profession {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 20px;
+    }
+
+    .aboutMe__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .aboutMe {
+        padding: 70px 18px 0;
+    }
+
+    .aboutMe__title {
+        margin: 0 0 60px;
+    }
+
+    .aboutMe__content {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .aboutMe__avatar {
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        margin: 0 0 40px;
+    }
+
+    .aboutMe__name {
+        font-size: 30px;
+        line-height: 36px;
+        margin: 0 0 20px;
+    }
+
+    .aboutMe__profession {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 20px;
+    }
+
+    .aboutMe__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 40px;
+    }
+}
+
+

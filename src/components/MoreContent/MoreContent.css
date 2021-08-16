@@ -1,0 +1,26 @@
+.more-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 166px;
+}
+
+.more-content__button {
+    width: 320px;
+    min-height: 36px;
+    background-color: #202020;
+    color: white;
+    border: 1px solid #424242;
+    outline: 0;
+    border-radius: 7px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.more-content__button:hover {
+    box-shadow: 0 4px 4px rgba(50, 50, 71, 0.08), 0 4px 8px rgba(50, 50, 71, 0.06);
+}
