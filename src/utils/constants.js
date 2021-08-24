@@ -1,4 +1,4 @@
-export const API_MAIN_URL = 'http://api.stepalin-movies.nomoredomains.club';
+export const API_MAIN_URL = 'https://api.stepalin-movies.nomoredomains.club';
 export const API_MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const SHORT_MOVIE_DURATION = 40;
 export const MORE_BUTTON_TOP_WIDTH_THRESHOLD = 1024;
