@@ -14,16 +14,18 @@ import {SavedMovies} from "../SavedMovies/SavedMovies";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute";
 import MainApi from "../../utils/MainApi";
+import MoviesApi from '../../utils/MoviesApi'
 import {MORE_BUTTON_RESOLUTION_SETTINGS} from "../../utils/constants";
 import {useFormWithValidation} from "../../utils/customHooks";
 
 function App() {
     const history = useHistory();
     const [currentUser, setCurrentUser] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(Boolean(localStorage.jwt));
     const [isOpenSidebar, setIsOpenSidebar] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [errorText, setErrorText] = useState('');
+    const [successText, setSuccessText] = useState(false);
     const [state, setState] = useState({
         movieList: [],
         savedMovieList: [],
@@ -38,6 +40,36 @@ function App() {
         disableInputs: false,
     })
 
+    useEffect(()=>{
+        console.log(state)
+    })
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            const jwt = localStorage.getItem('jwt');
+            setIsLoading(true);
+            Promise.all([
+                MainApi.checkUserToken(jwt),
+                MoviesApi.getMovies(),
+                MainApi.getSavedMovies(jwt),
+            ])
+                .then(([
+                           userData,
+                           movieList,
+                           savedMovieList,
+                       ]) => {
+                    setCurrentUser(userData);
+                    setState({
+                        ...state,
+                        movieList,
+                        savedMovieList: savedMovieList.filter(movie => movie.owner === userData._id)
+                    });
+                })
+                .catch((err) => console.log(`Ошибка ${err.status} - ${err.statusText}`))
+                .finally(() => setIsLoading(false));
+        }
+    }, [isLoggedIn]);
+
     const tokenCheck = (token) => {
         return MainApi.checkUserToken(token)
             .then((res) => {
@@ -46,7 +78,7 @@ function App() {
                     setIsLoggedIn(true);
                     history.push('/movies');
                 } else {
-                    // Promise.reject();
+                    Promise.reject();
                 }
             })
             .catch((err) => console.log(`Ошибка ${err.status}: ${err.message}`))
@@ -65,18 +97,28 @@ function App() {
         setIsOpenSidebar(false)
     }
 
-    // function handleClickLogin() {
-    //     setIsLoggedIn(true)
-    //     history.push('/movies')
-    // }
-
-    // useEffect(() => {
-    //     console.log(isOpenSidebar)
-    //     setIsOpenSidebar(true)
-    //
-    // }, [])
-
-    // const handleClickRegistration = () => history.push('/signin');
+    const handleEditProfile = (data) => {
+        const token = localStorage.getItem('jwt');
+        const { name, email } = data;
+        setState({ ...state, disableInputs: true });
+        return MainApi.updateUserInfo(name, email, token)
+            .then((res) => {
+                setCurrentUser(res);
+                setSuccessText(true);
+                setTimeout(() => setSuccessText(false), 5000);
+            })
+            .catch((err) => {
+                console.log(err)
+                if (err && err === "ошибка 409" ) {
+                    handleTextError('Пользователь с такими данными уже существует');
+                } else if (err && err === "ошибка 400") {
+                    handleTextError('Проверьте формат данных');
+                } else {
+                    handleTextError('Ошибка выполнения команды. Попробуйте снова.');
+                }
+            })
+            .finally(() => setState({ ...state, disableInputs: false }));
+    };
 
     const handleClickLogin = (data) => {
         const {email, password} = data;
@@ -96,6 +138,28 @@ function App() {
                 }
             })
             .finally(() => setState({...state, disableInputs: false}));
+    };
+
+    const handleClickSaveMovie = (movie) => {
+        const token = localStorage.getItem('jwt');
+        return MainApi.saveMovie(movie, token)
+            .then((savedMovie) => {
+                setState({
+                    ...state,
+                    savedMovieList: [...state.savedMovieList, movie],
+                })
+            })
+            .catch((err) => console.log(`${err.status}: ${err.message}`));
+    };
+
+    const handleClickRemoveSavedMovie = (movieId) => {
+        const token = localStorage.getItem('jwt');
+        return MainApi.removeMovie(movieId, token)
+            .then((deletedMovie) => {
+                const updateMovieList = state.savedMovieList.filter((i) => i._id !== movieId._id);
+                setState({ ...state, savedMovieList: updateMovieList, filteredSavedMovieList: updateMovieList })
+            })
+            .catch((err) => console.log(`${err.status}: ${err.message}`));
     };
 
     const handleClickRegistration = (data) => {
@@ -134,7 +198,7 @@ function App() {
                             handleClickSidebar={handleClickSidebar}
                         />
                         <MobileMenu
-                            isOperSidebar={isOpenSidebar}
+                            isOpenSidebar={isOpenSidebar}
                             handleClickCloseSidebar={handleClickCloseSidebar}
                         />
                     </>
@@ -174,8 +238,8 @@ function App() {
                     component={Movies}
                     state={state}
                     setState={setState}
-                    // handleClickSaveMovie={handleClickSaveMovie}
-                    // handleClickRemoveSavedMovie={handleClickRemoveSavedMovie}
+                    handleClickSaveMovie={handleClickSaveMovie}
+                    handleClickRemoveSavedMovie={handleClickRemoveSavedMovie}
                     isLoading={isLoading}
                     setIsLoading={setIsLoading}
                 />
@@ -183,88 +247,32 @@ function App() {
                     exact path='/saved-movies'
                     isLoggedIn={isLoggedIn}
                     component={SavedMovies}
+                    state={state}
+                    setState={setState}
+                    handleClickRemoveSavedMovie={handleClickRemoveSavedMovie}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
                 />
                 <ProtectedRoute
                     exact path='/profile'
+                    state={state}
                     isLoggedIn={isLoggedIn}
                     component={Profile}
+                    handleEditProfile={handleEditProfile}
                     handleClickLogout={handleClickLogout}
+                    useFormWithValidation={useFormWithValidation}
+                    errorText={errorText}
+                    successText={successText}
+
                 />
                 <Route path='*'>
                     <NotFound/>
                 </Route>
-                {
-                    useRouteMatch(['/signin', '/signup', '/profile',]) ? '' : (<Footer/>)
-                }
             </Switch>
+            {
+                useRouteMatch(['/signin', '/signup', '/profile',]) ? '' : (<Footer/>)
+            }
         </CurrentUserContext.Provider>
-        // <>
-        //     <Switch>
-        //         <Route exact path='/'>
-        //             <Header
-        //                 isLoggedIn={isLoggedIn}
-        //                 handleClickSidebar={handleClickSidebar}
-        //             />
-        //             <Main
-        //                 isOpenSidebar={isOpenSidebar}
-        //             />
-        //             <Footer/>
-        //             <MobileMenu
-        //                 isOpenSidebar={isOpenSidebar}
-        //                 handleClickCloseSidebar={handleClickCloseSidebar}
-        //             />
-        //         </Route>
-        //         <Route path='/signin'>
-        //             <Login handleClickLogin={handleClickLogin}/>
-        //         </Route>
-        //         <Route path='/signup'>
-        //             <Registration
-        //                 handleClickRegistr={handleClickRegistration}
-        //             />
-        //         </Route>
-        //         <Route path='/movies'>
-        //             <Header
-        //                 handleClickSidebar={handleClickSidebar}
-        //                 isLoggedIn={isLoggedIn}
-        //                 handleClickLogout={handleClickLogout}
-        //             />
-        //             <Movies/>
-        //             <Footer/>
-        //             <MobileMenu
-        //                 isOpenSidebar={isOpenSidebar}
-        //                 handleClickCloseSidebar={handleClickCloseSidebar}
-        //             />
-        //         </Route>
-        //         <Route path='/saved-movies'>
-        //             <Header
-        //                 isLoggedIn={isLoggedIn}
-        //                 handleClickLogout={handleClickLogout}
-        //             />
-        //             <SavedMovies/>
-        //             <Footer/>
-        //             <MobileMenu
-        //                 isOpenSidebar={isOpenSidebar}
-        //                 handleClickCloseSidebar={handleClickCloseSidebar}
-        //             />
-        //         </Route>
-        //         <Route path='/profile'>
-        //             <Header
-        //                 isLoggedIn={isLoggedIn}
-        //                 handleClickLogout={handleClickLogout}
-        //             />
-        //             <Profile
-        //                 handleClickLogout={handleClickLogout}
-        //             />
-        //             <MobileMenu
-        //                 isOpenSidebar={isOpenSidebar}
-        //                 handleClickCloseSidebar={handleClickCloseSidebar}
-        //             />
-        //         </Route>
-        //         <Route path='*'>
-        //             <NotFound/>
-        //         </Route>
-        //     </Switch>
-        // </>
     );
 }
 

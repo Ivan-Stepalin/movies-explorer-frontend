@@ -22,5 +22,5 @@
 }
 
 .more-content__button:hover {
-    box-shadow: 0 4px 4px rgba(50, 50, 71, 0.08), 0 4px 8px rgba(50, 50, 71, 0.06);
+    opacity: .75;
 }

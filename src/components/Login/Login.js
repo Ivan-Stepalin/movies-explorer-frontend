@@ -4,10 +4,12 @@ import logo from '../../images/login/logo.svg';
 
 export const Login = (props) => {
     const { values, errors, isValid, handleChange } = props.useFormWithValidation({});
+
     const handleSubmit = (e) => {
         e.preventDefault();
         props.handleClickLogin(values);
     };
+
     return (
         <main className='auth'>
             <div className='auth__container'>
