@@ -29,7 +29,6 @@ export const SearchForm = (props) => {
             props.setState({ ...props.state, movieSearch: e.target.value })
         }
     }
-
     const handleChangeReplicaCheckbox = () => setStateCheckbox(!stateCheckbox)
 
     const handleSubmit = (e) => {
@@ -46,6 +45,7 @@ export const SearchForm = (props) => {
         } else {
             props.setState({ ...props.state, movieSearch: e.target.value })
             const filteredMoviesArray = filteringMoviesArray(props.state.movieList, props.state.movieSearch)
+            console.log(filteredMoviesArray)
             props.setState({
                 ...props.state,
                 filteredMoviesList: filteredMoviesArray,

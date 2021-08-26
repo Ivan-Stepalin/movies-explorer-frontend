@@ -11,8 +11,8 @@ export const Movies = (props) => {
 
     useEffect(() => {
         // console.log(moviesArray.length <= props.state.numberMovies)
-        console.log(props.state.numberMovies)
-        console.log(moviesArray.length)
+        // console.log(props.state.numberMovies)
+        // console.log(moviesArray.length)
     })
 
     useEffect(() => {

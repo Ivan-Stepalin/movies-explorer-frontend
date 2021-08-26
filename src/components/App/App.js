@@ -40,9 +40,9 @@ function App() {
         disableInputs: false,
     })
 
-    useEffect(()=>{
-        console.log(state)
-    })
+    // useEffect(()=>{
+    //     console.log(state)
+    // })
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -108,7 +108,7 @@ function App() {
                 setTimeout(() => setSuccessText(false), 5000);
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
                 if (err && err === "ошибка 409" ) {
                     handleTextError('Пользователь с такими данными уже существует');
                 } else if (err && err === "ошибка 400") {
