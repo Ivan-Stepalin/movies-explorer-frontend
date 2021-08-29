@@ -4,6 +4,12 @@ import {MoviesCardList} from '../MoviesCardList/MoviesCardList';
 import {Preloader} from '../Preloader/Preloader';
 import {MoreContent} from '../MoreContent/MoreContent';
 import './Movies.css';
+import {
+    MORE_BUTTON_BOTTOM_WIDTH_THRESHOLD,
+    MORE_BUTTON_RESOLUTION_SETTINGS,
+    MORE_BUTTON_TOP_WIDTH_THRESHOLD
+} from "../../utils/constants";
+import {useWindowWidthSettings} from "../../utils/customHooks";
 
 export const Movies = (props) => {
     // const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +19,7 @@ export const Movies = (props) => {
         // console.log(moviesArray.length <= props.state.numberMovies)
         // console.log(props.state.numberMovies)
         // console.log(moviesArray.length)
+        // console.log(props.state)
     })
 
     useEffect(() => {
@@ -30,6 +37,17 @@ export const Movies = (props) => {
             }
         }
     }, [props.state.movieSearchSubmitClick, props.state.filteredMoviesList, props.state.movieList, props.state.movieSearch.length])
+
+    const windowWidth = useWindowWidthSettings();
+    useEffect(() => {
+        if (windowWidth > MORE_BUTTON_TOP_WIDTH_THRESHOLD) {
+            props.setState({ ...props.state, numberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.big.default, addNumberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.big.grow })
+        } else if (windowWidth > MORE_BUTTON_BOTTOM_WIDTH_THRESHOLD) {
+            props.setState({ ...props.state, numberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.medium.default, addNumberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.medium.grow })
+        } else {
+            props.setState({ ...props.state, numberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.small.default, addNumberMovies: MORE_BUTTON_RESOLUTION_SETTINGS.small.grow })
+        }
+    }, [windowWidth]);
 
     const handleAddMovies = () => props.setState({
         ...props.state,

@@ -1,14 +1,12 @@
-import {useEffect, useState} from 'react'
 import './MoviesCard.css'
 import LikeEnabled from '../../images/movie/LikeEnabled.svg'
 import LikeDisabled from '../../images/movie/LikeDisabled.svg'
 import removeIcon from '../../images/movie/remove.svg'
 
 export const MoviesCard = (props) => {
-    let isMovieSaved = props.state.savedMovieList.some((movieData) =>
+    const isMovieSaved = props.state.savedMovieList.some((movieData) =>
         movieData.nameRU === props.item.nameRU
     )
-
     const handleClickDelete = () => props.handleClickRemoveSavedMovie(props.item)
 
     const handleClickSave = () => {

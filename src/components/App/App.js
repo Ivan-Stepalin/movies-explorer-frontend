@@ -99,8 +99,8 @@ function App() {
 
     const handleEditProfile = (data) => {
         const token = localStorage.getItem('jwt');
-        const { name, email } = data;
-        setState({ ...state, disableInputs: true });
+        const {name, email} = data;
+        setState({...state, disableInputs: true});
         return MainApi.updateUserInfo(name, email, token)
             .then((res) => {
                 setCurrentUser(res);
@@ -109,7 +109,7 @@ function App() {
             })
             .catch((err) => {
                 // console.log(err)
-                if (err && err === "ошибка 409" ) {
+                if (err && err === "ошибка 409") {
                     handleTextError('Пользователь с такими данными уже существует');
                 } else if (err && err === "ошибка 400") {
                     handleTextError('Проверьте формат данных');
@@ -117,7 +117,7 @@ function App() {
                     handleTextError('Ошибка выполнения команды. Попробуйте снова.');
                 }
             })
-            .finally(() => setState({ ...state, disableInputs: false }));
+            .finally(() => setState({...state, disableInputs: false}));
     };
 
     const handleClickLogin = (data) => {
@@ -129,7 +129,7 @@ function App() {
                 tokenCheck(data.token);
             })
             .catch((err) => {
-                if (err && err === 'Ошибка 401' ) {
+                if (err && err === 'Ошибка 401') {
                     handleTextError('Неверный логин или пароль');
                 } else if (err && err === 'Ошибка 400') {
                     handleTextError('Проверьте формат данных');
@@ -146,18 +146,25 @@ function App() {
             .then((savedMovie) => {
                 setState({
                     ...state,
-                    savedMovieList: [...state.savedMovieList, movie],
+                    savedMovieList: [...state.savedMovieList, savedMovie],
                 })
             })
             .catch((err) => console.log(`${err.status}: ${err.message}`));
     };
 
+    useEffect(() => {
+        console.log(state)
+    })
+
     const handleClickRemoveSavedMovie = (movieId) => {
         const token = localStorage.getItem('jwt');
         return MainApi.removeMovie(movieId, token)
             .then((deletedMovie) => {
-                const updateMovieList = state.savedMovieList.filter((i) => i._id !== movieId._id);
-                setState({ ...state, savedMovieList: updateMovieList, filteredSavedMovieList: updateMovieList })
+                console.log(deletedMovie)
+                const updateMovieList = state.savedMovieList.filter((i) =>
+                    i._id !== deletedMovie._id
+                );
+                setState({...state, savedMovieList: updateMovieList, filteredSavedMovieList: updateMovieList})
             })
             .catch((err) => console.log(`${err.status}: ${err.message}`));
     };
