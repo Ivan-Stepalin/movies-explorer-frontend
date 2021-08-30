@@ -23,7 +23,7 @@ export const Header = (props) => {
                                 <Navigation mobileMenu={false}/>
                                 <AccountButton/>
                                 <button className='button header__menu' onClick={props.handleClickSidebar}>
-                                    <img src={burger} alt='Меню' className='header__menu-icon' />
+                                    <img src={burger} alt='Меню' className='header__menu-icon'/>
                                 </button>
                             </div>
                         </>
