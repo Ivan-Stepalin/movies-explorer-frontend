@@ -19,7 +19,7 @@ export const AboutMe = () => {
                 </div>
                 <ul className='list aboutMe__social-links aboutMe__social-links_student'>
                     <li>
-                        <a href='https://www.facebook.com/profile.php?id=1334733479' target='_blank' rel='noreferrer' className='link aboutMe__link'>Github</a>
+                        <a href='https://github.com/Ivan-Stepalin' target='_blank' rel='noreferrer' className='link aboutMe__link'>Github</a>
                     </li>
                     <li>
                         <a href='https://vk.com/stepalin' target='_blank' rel='noreferrer' className='link aboutMe__link'>Vk</a>
